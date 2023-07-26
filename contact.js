@@ -27,7 +27,7 @@ submit.addEventListener('submit', (e)=>{
         Subject : "MCTA Form Submission from " + femail.value,
         Body : ebody
     }).then(function() {
-        window.location.href = "/sentcontact.html";
+        window.location.href = "sentcontact.html";
     });
 
 });
