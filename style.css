@@ -69,6 +69,7 @@
     height: 100%
 }
 
+/*
 .navbar__btn {
     display: flex;
     justify-content: center;
@@ -96,6 +97,8 @@
 .button:active {
     transform: scale(0.8);
 }
+
+*/
 
 .navbar__links:hover {
     color:rgb(46, 135, 203);
@@ -347,6 +350,7 @@
     flex-direction: column;
     align-items: center;
     height: 100vh;
+    margin-bottom: 150px;
 }
 
 .services h1 {
@@ -411,6 +415,7 @@
 .services__card button {
     color: white;
     padding: 10px 20px;
+    margin-top: 15px;
     border: none;
     outline: none;
     border-radius: 4px;
@@ -487,8 +492,9 @@
 
 .midtext {
     color: #444;
-    font-size: 18px;
+    font-size: 20px;
 }
+
 
 .middiv {
     text-align: center;
@@ -588,5 +594,133 @@
 
 .form-contact input[type="submit"]:active {
     transform: scale(0.8); /* Shrink the button on click */
+}
+
+/*--------------------------------*/
+
+.services1 {
+    background: whitesmoke;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 100vh;
+    margin-bottom: 350px;
+}
+
+.services1 h1 {
+    background-color: rgb(46, 135, 203);
+    background-image: linear-gradient(to right, rgb(84, 162, 222) 0%, rgb(96, 145, 209) 0%, rgb(98, 146, 228) 21%, rgb(70, 142, 201) 52%, rgb(99, 159, 183) 78%, skyblue 100%);
+    background-size: 100%;
+    margin-bottom: 5rem;
+    font-size: 2.5rem;
+    -webkit-background-clip: text;
+    -moz-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    -moz-text-fill-color: transparent;
+}
+
+.services1__container {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.services1__card {
+    margin: 1rem;
+    height: 525px;
+    width: 400px;
+    border-radius: 4px;
+
+    background-image: linear-gradient(
+        to bottom, 
+      rgba(0,0,0,0) 0%, 
+      rgba(7, 6, 6, 0.6) 100%
+      ), 
+      url('code3.jpg');
+
+    background-size: cover;
+    position: relative;
+    color: white;
+}
+
+.services1__card:nth-child(2) {
+
+    background-image: linear-gradient(
+        to bottom, 
+      rgba(0,0,0,0) 0%, 
+      rgba(7, 6, 6, 0.6) 100%
+      ), 
+      url('building.jpg');
+
+}
+
+.services1 h2 {
+    position: absolute;
+    top: 350px;
+    left: 30px;
+}
+
+.services1__card p {
+    position: absolute;
+    top: 400px;
+    left: 30px;
+}
+
+.services1__card button {
+    color: white;
+    padding: 10px 20px;
+    margin-top: 15px;
+    border: none;
+    outline: none;
+    border-radius: 4px;
+    background: rgb(46, 135, 203);
+    position: absolute;
+    top: 440px;
+    left: 30px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: transform 0.3s;
+}
+
+.services1__card button:active {
+    transform: scale(0.8);
+}
+
+.services1__card:hover {
+    transform: scale(1.075);
+    transition: 0.2s ease-in;
+    cursor: pointer;
+}
+
+.services1__card a {
+    color: white;
+    text-decoration: none;
+    display: inline-block;
+}
+
+
+@media screen and (max-width: 960px) {
+    .services1 {
+        height: 1600px;
+    }
+
+    .services1 h1 {
+        font-size: 2rem;
+        margin-top: 12rem;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .services1 {
+        height: 1400px;
+    }
+
+    .services1 h1 {
+        font-size: 1.2rem;
+    }
+
+    .services1__card {
+        width: 300px;
+    }
 }
 
