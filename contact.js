@@ -69,7 +69,7 @@ submit.addEventListener('submit', (e)=>{
     Email.send({
         SecureToken : "374d6f26-5e69-43f3-b89b-4f92fd5b00b4",
         To : 'chip.maftei@gmail.com',
-        From : "mctatechnologies@outlook.com",
+        From : "office@mcta-tech.com",
         Subject : "MCTA Form Submission from " + femail.value,
         Body : ebody
     }).then(function() {
