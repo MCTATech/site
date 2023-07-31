@@ -22,7 +22,7 @@ captchaInputBox.value = "";
 captchaKeyUpValidate();
 
 const handleCorrectCaptcha = () => {
-    document.querySelector(".contactclass").style.display = "flex";
+    document.querySelector(".form-contact input[type=\"submit\"]").style.display = "flex";
     document.querySelector(".containerr").style.display = "none";
 };
 
@@ -30,10 +30,10 @@ const submitBtnClick = () => {
     captchaText = captchaText.split("").filter((char) => char !== " ").join("");
     message.classList.add("active");
     if(captchaInputBox.value === captchaText){
-        message.innerText = "Captcha is correct.";
+        message.innerText = "Captcha is correct";
         handleCorrectCaptcha();
     }else {
-        message.innerText = "Captcha is incorrect.";
+        message.innerText = "Captcha is incorrect";
     }
 }
 
