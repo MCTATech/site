@@ -30,10 +30,10 @@ const submitBtnClick = () => {
     captchaText = captchaText.split("").filter((char) => char !== " ").join("");
     message.classList.add("active");
     if(captchaInputBox.value === captchaText){
-        message.innerText = "Captcha is correct";
+        message.innerText = "Captcha is correct.";
         handleCorrectCaptcha();
     }else {
-        message.innerText = "Captcha is incorrect, refresh page";
+        message.innerText = "Captcha is incorrect.";
     }
 }
 
