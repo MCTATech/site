@@ -507,8 +507,7 @@
     text-align: center;
     align-items: center;
     justify-content: center;
-    display: none;
-    /*display: flex;*/
+    display: flex;
 }
 
 
@@ -584,7 +583,7 @@
     margin-top: 8px; /* Add some spacing between the form and the submit button */
 
     color: white;
-
+    display: none;
     border-radius: 10px;
     outline: none;
     height: 40px;
@@ -733,6 +732,7 @@
     text-align: center;
     align-items: center;
     justify-content: center;
+
 }
 
 .containerr input {
