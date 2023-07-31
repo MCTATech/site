@@ -782,3 +782,18 @@
 .input_field {
     margin-top: 10px;
 }
+
+/*--Services page edit--*/
+
+.p1 {
+    margin-top: 1rem;
+    font-size: 20px;
+    font-weight: 700;
+    color: #444;
+}
+
+.divp1 {
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
