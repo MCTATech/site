@@ -47,8 +47,6 @@
         <br><br>
 
 
-        <script src="https://www.google.com/recaptcha/api.js" async defer></script>
-
         <div class="contactclass">
             <form action="#" class="form-contact" id="form-contact" onsubmit="return submitUserForm();">
                 <input id="fname" type="text" placeholder="Full Name" required>
@@ -56,28 +54,28 @@
                 <input id="femail" type="email" placeholder="Email" required>
                 <input id="fnumber" type="number" pattern="[0-9]*" placeholder="Phone Number" oninput="NumberLength(this)" required>
                 <input id="fmessage" type="text" placeholder="Message (Optional)" oninput="checkWordCount(this)">
-                <div class="g-recaptcha" data-sitekey="6LfiFGonAAAAAOLgwJNgh9YanPu4-_DKB8msUh8E" data-callback="showSubmitButton"></div>
-                <div id="g-recaptcha-error"></div>
-                <input id="fsubmit" type="submit" value="Submit" style="display: none;">
+                
+                <input id="fsubmit" type="submit" value="Send Form">
+
+            
             </form>
-            <script>
-                function showSubmitButton() {
-                    document.getElementById('fsubmit').style.display = 'block';
-                }
 
-                function submitUserForm() {
-                    var response = grecaptcha.getResponse();
-                    if (response.length == 0) {
-                        document.getElementById('g-recaptcha-error').innerHTML = '<span style="color:red;">This field is required.</span>';
-                        return false;
-                    }
-                    return true;
-                }
+        </div>
+        <br>
+        
+        <!--Captcha-->
+        <div class="containerr">
+            <div class="input_field captch_box">
+                <input type="text" class="captch_box1" value="" disabled/>
+            </div>
 
-                function verifyCaptcha() {
-                    document.getElementById('g-recaptcha-error').innerHTML = '';
-                }
-            </script>
+            <div class="input_field captch_input">
+                <input type="text" class="captch_input1" value="" placeholder="Enter Captcha" />
+            </div>      
+            <div class="message"></div>
+            <div class="input_field button">
+                <button id="capbtn">Submit Captcha</button>
+            </div>
         </div>
 
 
