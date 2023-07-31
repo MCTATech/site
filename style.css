@@ -507,8 +507,10 @@
     text-align: center;
     align-items: center;
     justify-content: center;
-    display: flex;
+    display: none;
+    /*display: flex;*/
 }
+
 
 .form-contact {
     margin: auto;
@@ -722,4 +724,61 @@
     .services1__card {
         width: 300px;
     }
+}
+
+
+/*-----Captcha-------*/
+
+.containerr {
+    text-align: center;
+    align-items: center;
+    justify-content: center;
+}
+
+.containerr input {
+    width: 250px;
+    height: 40px;
+    padding: 0.5rem;
+    border-radius: 16px;
+    border: none;
+    outline: none;
+    box-shadow: 1px 1px 5px black;
+
+}
+
+#capbtn {
+    background-color: rgb(142, 20, 153);
+    background-image: linear-gradient(to top, rgb(133, 15, 143) 0%, rgb(165, 89, 172) 100%);
+    background-size: 100%;
+    padding: 10px 20px;
+    margin-top: 8px; /* Add some spacing between the form and the submit button */
+    color: white;
+    border: none;
+    border-radius: 10px;
+    outline: none;
+    height: 40px;
+    width: 250px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: transform 0.3s;
+ 
+}
+
+#capbtn:active {
+    transform: scale(0.8); /* Shrink the button on click */
+}
+
+
+.message {
+    margin-top:7px;
+    font: 16px;
+    display: none;
+}
+
+.message.active {
+    display: block;
+}
+
+.input_field {
+    margin-top: 10px;
 }
