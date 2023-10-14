@@ -7,8 +7,8 @@
         <link rel="stylesheet" href="style.css" />
         <link rel="icon" type="image/png" href="mcico.png">
         <link href="https://fonts.googleapis.com/css2?family=Kumbh+Sans:wght@500;700&display=swap" rel="stylesheet">
-
     </head>
+
     <body>
         <nav class="navbar">
             <div class="navbar__container">
@@ -46,23 +46,25 @@
         </div>
         <br><br>
 
-
         <div class="contactclass">
             <form action="#" class="form-contact" id="form-contact" onsubmit="return submitUserForm();">
                 <input id="fname" type="text" placeholder="Full Name" required>
                 <input id="fcompany" type="text" placeholder="Company" required>
                 <input id="femail" type="email" placeholder="Email" required>
                 <input id="fnumber" type="number" pattern="[0-9]*" placeholder="Phone Number" oninput="NumberLength(this)" required>
-                <input id="fmessage" type="text" placeholder="Message (Optional)" oninput="checkWordCount(this)">
-                
+                <br>
+                <div id="placeholder22">Leave a message (Optional)</div>
+                <div id="textarea-container" style="position: relative;">
+                    <textarea id="fmessage" placeholder=""></textarea>    
+                </div>
                 <input id="fsubmit" type="submit" value="Send Form">
 
-            
             </form>
 
         </div>
         <br>
-        
+
+
         <!--Captcha-->
         <div class="containerr">
             <div class="input_field captch_box">
@@ -77,7 +79,6 @@
                 <button id="capbtn">Submit Captcha</button>
             </div>
         </div>
-
 
 
         <!--footer section-->
@@ -118,9 +119,7 @@
         </script>
         <script src="https://smtpjs.com/v3/smtp.js"></script>
         <script src="contact.js"></script>
-        <script src="index.js"></script>
+
 
     </body>
 </html>
-
-
