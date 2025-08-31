@@ -72,8 +72,20 @@ submit.addEventListener('submit', (e)=>{
         From : "mctatechnologies@outlook.com",
         Subject : "MCTA Form Submission from " + femail.value,
         Body : ebody
-    }).then(function() {
-        window.location.href = "sentcontact.html";
+    }).then(function(response) {
+        console.log("Email sent successfully:", response);
+        console.log("Full response:", JSON.stringify(response, null, 2));
+        // Only redirect on successful send
+        if (response === "OK") {
+            window.location.href = "sentcontact.html";
+        } else {
+            console.error("Unexpected response:", response);
+            alert("Email may not have sent properly. Response: " + response);
+        }
+    }).catch(function(error) {
+        console.error("Email sending failed:", error);
+        console.error("Full error:", JSON.stringify(error, null, 2));
+        alert("Failed to send email: " + error);
     });
 
 });
