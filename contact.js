@@ -53,6 +53,8 @@ const submit = document.getElementsByClassName('form-contact')[0];
 
 submit.addEventListener('submit', (e)=>{
     e.preventDefault();
+    e.stopPropagation();
+    console.log("Form submission started...");
 
     let ebody = `
     <b>Name: </b>${fname.value} 
@@ -75,17 +77,24 @@ submit.addEventListener('submit', (e)=>{
     }).then(function(response) {
         console.log("Email sent successfully:", response);
         console.log("Full response:", JSON.stringify(response, null, 2));
-        // Only redirect on successful send
-        if (response === "OK") {
-            window.location.href = "sentcontact.html";
-        } else {
-            console.error("Unexpected response:", response);
-            alert("Email may not have sent properly. Response: " + response);
-        }
+        console.log("Waiting 5 seconds before redirect to allow you to see the response...");
+        
+        // Wait 5 seconds before redirect so you can see the console output
+        setTimeout(function() {
+            if (response === "OK") {
+                window.location.href = "sentcontact.html";
+            } else {
+                console.error("Unexpected response:", response);
+                alert("Email may not have sent properly. Response: " + response);
+            }
+        }, 5000);
+        
     }).catch(function(error) {
         console.error("Email sending failed:", error);
         console.error("Full error:", JSON.stringify(error, null, 2));
-        alert("Failed to send email: " + error);
+        console.error("Error type:", typeof error);
+        console.error("Error message:", error.message || error.toString());
+        alert("Failed to send email. Check console for details. Error: " + (error.message || error));
     });
 
 });
