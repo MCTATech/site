@@ -47,17 +47,17 @@
         <br><br>
 
         <div class="contactclass">
-            <form action="#" class="form-contact" id="form-contact">
-                <input id="fname" type="text" placeholder="Full Name" required>
-                <input id="fcompany" type="text" placeholder="Company" required>
-                <input id="femail" type="email" placeholder="Email" required>
-                <input id="fnumber" type="number" pattern="[0-9]*" placeholder="Phone Number" oninput="NumberLength(this)" required>
+            <form action="https://formspree.io/f/xpwjrokb" method="POST" class="form-contact" id="form-contact">
+                <input name="name" type="text" placeholder="Full Name" required>
+                <input name="company" type="text" placeholder="Company" required>
+                <input name="email" type="email" placeholder="Email" required>
+                <input name="phone" type="tel" placeholder="Phone Number" maxlength="15" required>
                 <br>
                 <div id="placeholder22">Leave a message (Optional)</div>
                 <div id="textarea-container" style="position: relative;">
-                    <textarea id="fmessage" placeholder=""></textarea>    
+                    <textarea name="message" placeholder="" maxlength="500"></textarea>    
                 </div>
-                <input id="fsubmit" type="submit" value="Send Form">
+                <input type="submit" value="Send Form">
 
             </form>
 
@@ -117,8 +117,16 @@
                 }
             }
         </script>
-        <script src="https://smtpjs.com/v3/smtp.js"></script>
-        <script src="contact.js"></script>
+        <script>
+            // Simple form handling for Formspree
+            const form = document.querySelector('.form-contact');
+            
+            form.addEventListener('submit', function(e) {
+                const submitBtn = form.querySelector('input[type="submit"]');
+                submitBtn.value = 'Sending...';
+                submitBtn.disabled = true;
+            });
+        </script>
 
 
     </body>
