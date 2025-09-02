@@ -50,36 +50,23 @@
             <form action="https://formspree.io/f/xpwjrokb" method="POST" class="form-contact" id="form-contact">
                 <input name="name" type="text" placeholder="Full Name" required>
                 <input name="company" type="text" placeholder="Company" required>
-                <input name="email" type="email" placeholder="Email" required>
-                <input name="phone" type="tel" placeholder="Phone Number" maxlength="15" required>
+                <input name="email" type="email" placeholder="Email" required pattern="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}" title="Please enter a valid email address">
+                <input name="phone" type="tel" placeholder="Phone Number (e.g., +1234567890)" required pattern="[+]?[0-9]{1,4}?[-. ]?[(]?[0-9]{1,3}?[)]?[-. ]?[0-9]{1,4}[-. ]?[0-9]{1,9}" title="Please enter a valid phone number (international formats accepted, e.g., +1 234 567 8900, 123-456-7890)">
                 <br>
-                <div id="placeholder22">Leave a message (Optional)</div>
+                <div id="placeholder22">Leave a message</div>
                 <div id="textarea-container" style="position: relative;">
-                    <textarea name="message" placeholder="" maxlength="500"></textarea>    
+                    <textarea name="message" placeholder="" maxlength="500" required style="height: 150px; resize: vertical;"></textarea>    
                 </div>
-                <input type="submit" value="Send Message" style="display: none; background: linear-gradient(135deg, #ff6b35 0%, #f7931e 100%); color: white; border: none; padding: 0; border-radius: 8px; font-size: 16px; font-weight: 600; cursor: pointer; transition: all 0.3s; box-shadow: 0 4px 15px rgba(255,107,53,0.3); width: auto; height: 50px; min-width: 140px;">
+                <!-- Honeypot field for spam protection -->
+                <input type="text" name="_gotcha" style="display:none" />
+                <br>
+                <input type="submit" value="Send Message" style="background: linear-gradient(135deg, #ff6b35 0%, #f7931e 100%); color: white; border: none; padding: 15px 30px; border-radius: 8px; font-size: 16px; font-weight: 600; cursor: pointer; transition: all 0.3s; box-shadow: 0 4px 15px rgba(255,107,53,0.3); margin-top: 20px; display: block; margin-left: auto; margin-right: auto; text-align: center; line-height: normal; height: auto;">
+                <p style="text-align: center; font-size: 11px; color: #666; margin-top: 10px; font-style: italic;">This form is protected against spam and robots</p>
 
             </form>
 
         </div>
         <br>
-
-
-        <!--Captcha-->
-        <div class="containerr">
-            <div class="input_field captch_box">
-                <input type="text" class="captch_box1" value="" disabled/>
-            </div>
-
-            <div class="input_field captch_input">
-                <input type="text" class="captch_input1" value="" placeholder="Enter Captcha" />
-            </div>      
-            <div class="message"></div>
-            <div class="input_field button" style="display: flex; justify-content: center;">
-                <button id="capbtn" style="background: linear-gradient(135deg, #ff6b35 0%, #f7931e 100%); color: white; border: none; padding: 15px 30px; border-radius: 8px; font-size: 16px; font-weight: 600; cursor: pointer; transition: all 0.3s; box-shadow: 0 4px 15px rgba(255,107,53,0.3); display: flex; align-items: center; justify-content: center; line-height: 1;">Submit Captcha</button>
-            </div>
-        </div>
-
 
         <!--footer section-->
         <br>
@@ -116,54 +103,57 @@
                 inputElement.value = truncatedMessage;
                 }
             }
-        </script>
-        <script>
-            // Captcha functionality
-            const captchaTextBox = document.querySelector(".captch_box input");
-            const captchaInputBox = document.querySelector(".captch_input input");
-            const message = document.querySelector(".message");
-            const submitButton = document.querySelector("#capbtn");
+            
+            // Form validation and submission handling
             const form = document.querySelector('.form-contact');
+            const emailInput = form.querySelector('input[name="email"]');
+            const phoneInput = form.querySelector('input[name="phone"]');
             
-            let captchaText = null;
-            
-            const generateCaptcha = () => {
-                const randomString = Math.random().toString(36).substring(2, 7);
-                const randomStringArray = randomString.split("");
-                const changeString = randomStringArray.map((char) => (Math.random() > 0.5 ? char.toUpperCase() : char));
-                captchaText = changeString.join("   ");
-                captchaTextBox.value = captchaText;
-            };
-            
-            const captchaKeyUpValidate = () => {
-                submitButton.classList.toggle("disabled", !captchaInputBox.value);
-            };
-            
-            generateCaptcha(); 
-            captchaInputBox.value = "";
-            captchaKeyUpValidate();
-            
-            const handleCorrectCaptcha = () => {
-                document.querySelector(".form-contact input[type=\"submit\"]").style.display = "flex";
-                document.querySelector(".containerr").style.display = "none";
-            };
-            
-            const submitBtnClick = () => {
-                captchaText = captchaText.split("").filter((char) => char !== " ").join("");
-                message.classList.add("active");
-                if(captchaInputBox.value === captchaText){
-                    message.innerText = "Captcha is correct";
-                    handleCorrectCaptcha();
-                }else {
-                    message.innerText = "Captcha is incorrect";
+            // Enhanced email validation
+            emailInput.addEventListener('blur', function() {
+                const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+                if (this.value && !emailRegex.test(this.value)) {
+                    this.setCustomValidity('Please enter a valid email address');
+                } else {
+                    this.setCustomValidity('');
                 }
-            };
+            });
             
-            captchaInputBox.addEventListener("keyup", captchaKeyUpValidate);
-            submitButton.addEventListener("click", submitBtnClick);
+            // Enhanced phone validation - accepts international formats
+            phoneInput.addEventListener('blur', function() {
+                // Remove all non-digit characters except + at the beginning
+                const cleanNumber = this.value.replace(/[^0-9+]/g, '').replace(/\+(?!^)/g, '');
+                
+                // Check if it's a valid phone number (7-15 digits, optional + at start)
+                const phoneRegex = /^[+]?[0-9]{7,15}$/;
+                if (this.value && !phoneRegex.test(cleanNumber)) {
+                    this.setCustomValidity('Please enter a valid phone number (7-15 digits, optional + prefix)');
+                } else {
+                    this.setCustomValidity('');
+                }
+            });
             
-            // Form submission with Formspree
             form.addEventListener('submit', function(e) {
+                // Validate email
+                const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+                if (!emailRegex.test(emailInput.value)) {
+                    e.preventDefault();
+                    emailInput.setCustomValidity('Please enter a valid email address');
+                    emailInput.reportValidity();
+                    return;
+                }
+                
+                // Validate phone
+                const cleanNumber = phoneInput.value.replace(/[^0-9+]/g, '').replace(/\+(?!^)/g, '');
+                const phoneRegex = /^[+]?[0-9]{7,15}$/;
+                if (!phoneRegex.test(cleanNumber)) {
+                    e.preventDefault();
+                    phoneInput.setCustomValidity('Please enter a valid phone number (7-15 digits, optional + prefix)');
+                    phoneInput.reportValidity();
+                    return;
+                }
+                
+                // If validation passes, show sending state
                 const submitBtn = form.querySelector('input[type="submit"]');
                 submitBtn.value = 'Sending...';
                 submitBtn.disabled = true;
